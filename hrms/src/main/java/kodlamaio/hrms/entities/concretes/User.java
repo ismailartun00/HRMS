@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@NoArgsConstructor
+@Entity
 @Table(name="users")
 public class User {
 
@@ -19,10 +21,11 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="email")
+	@Email(message="Please enter a valid mail!")
+	//@Pattern(regexp = "[a-zA-Z][\\w-]{1,20}@\\w{2,20}\\.\\w{2,3}$", message="The mail is not valid.")
 	private String email;
 	
-	@Column(name="password")
+	@Column(name="password", nullable = false, length = 50)
 	private String password;
 	
 }
