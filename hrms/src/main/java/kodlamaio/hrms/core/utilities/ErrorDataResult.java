@@ -3,19 +3,19 @@ package kodlamaio.hrms.core.utilities;
 public class ErrorDataResult<T> extends DataResult<T> {
 	
 	public ErrorDataResult() {
-		super(null, false);
+		super(false, null);
 	}
 	
 	public ErrorDataResult(T data) {
-		super(data, false);
+		super(false, data);
+	}
+	
+	public ErrorDataResult(String message, T data) {
+		super(false, message, data);
 	}
 	
 	public ErrorDataResult(String message) {
-		super(null, false, message);
+		super(false, message, null);
 	}
 	
-	public ErrorDataResult(T data, String message) {
-		super(data, false, message);
-	}
-
 }

@@ -11,4 +11,14 @@ public class ApiPaths {
 	public static final class JobTitleCtrl{
 		public static final String CTRL = BASE_PATH + "/jobtitles";
 	}
+	
+	public static final class CandidateCtrl{
+		public static final String CTRL = BASE_PATH + "/candidates";
+	}
+	public static final class EmployerCtrl{
+		public static final String CTRL = BASE_PATH + "/employers";
+	}
+	public static final class EmployeeCtrl{
+		public static final String CTRL = BASE_PATH + "/employees";
+	}
 }
