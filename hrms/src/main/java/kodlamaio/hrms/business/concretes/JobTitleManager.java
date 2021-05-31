@@ -2,64 +2,67 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobTitleService;
-import kodlamaio.hrms.core.utilities.DataResult;
-import kodlamaio.hrms.core.utilities.ErrorResult;
-import kodlamaio.hrms.core.utilities.Result;
-import kodlamaio.hrms.core.utilities.SuccessDataResult;
-import kodlamaio.hrms.core.utilities.SuccessResult;
+import kodlamaio.hrms.core.utilities.constants.EnglishMessages;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
+import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.validators.JobTitleValidator;
 import kodlamaio.hrms.dataAccess.abstracts.JobTitleDao;
-import kodlamaio.hrms.entities.concretes.JobTitle;
-import lombok.NoArgsConstructor;
+import kodlamaio.hrms.entities.JobTitle;
+import lombok.RequiredArgsConstructor;
 
-@NoArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class JobTitleManager implements JobTitleService {
-	
-	@Autowired
-	private JobTitleDao jobTitleDao;
-	JobTitle jobTitleDb = new JobTitle();
+	private final JobTitleDao jobTitleDao;
+	private JobTitleValidator jobTitleValidator;
 
+	
 	@Override
 	public DataResult<List<JobTitle>> getAll() {
-		return new SuccessDataResult<List<JobTitle>>("Job Titles are Listed.", this.jobTitleDao.findAll());
-	}
-
-
-	@Override
-	public Result add(JobTitle jobTitle) {
-		this.jobTitleDao.save(jobTitle);
-		return new SuccessResult("Job Title is Added.");
+	
+		return new SuccessDataResult<List<JobTitle>>
+		(this.jobTitleDao.findAll(),EnglishMessages.JOB_TITLE_SUCCESS_DATA_LISTED);			
 	}
 	
+	
 	@Override
-	public Result update(int id, JobTitle jobTitle) {
-		jobTitleDb = jobTitleDao.getOne(id);
-		if(jobTitleDb == null) {
-			return new ErrorResult("Job Title Does not Exist");
-		}
-		
-		jobTitleDb.setId(jobTitle.getId());
-		jobTitleDb.setTitle(jobTitle.getTitle());
-		
-		jobTitleDao.save(jobTitleDb);
-		
-		return new SuccessResult("Job Title is Updated");
+	public DataResult<JobTitle> getById(int id) {
+		JobTitle jobTitle = jobTitleDao.findById(id);
+		if(jobTitle == null)
+			return new ErrorDataResult<JobTitle>();
+		return new SuccessDataResult<JobTitle>(jobTitle);
+	}
+	
+	
+	@Override
+	public Result add(JobTitle jobTitle) {
+		jobTitleValidator = new JobTitleValidator(jobTitle, jobTitleDao);
+		Result result = jobTitleValidator.isValid();
+		if( result instanceof ErrorResult)
+			return result;
+			
+		this.jobTitleDao.save(jobTitle);
+		return new SuccessResult(EnglishMessages.JOB_TITLE_SUCCESS_ADDED);
 	}
 
 
 	@Override
-	public Result delete(int id) {
-		if(jobTitleDb == null) {
-			return new ErrorResult("Id of Job Title is Null");
-		}
-		
-		jobTitleDao.deleteById(id);
-
-		return new SuccessResult("Job Title is Deleted");
+	public Result update(JobTitle jobTitle) {
+		this.jobTitleDao.save(jobTitle);
+		return new SuccessResult("Job position updated.");
 	}
 
+
+	@Override
+	public Result delete(JobTitle jobTitle) {
+		this.jobTitleDao.delete(jobTitle);
+		return new SuccessResult("Job position deleted.");
+	}
 }

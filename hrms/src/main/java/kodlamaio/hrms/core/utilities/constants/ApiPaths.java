@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities;
+package kodlamaio.hrms.core.utilities.constants;
 
 public class ApiPaths {
 	
@@ -21,4 +21,12 @@ public class ApiPaths {
 	public static final class EmployeeCtrl{
 		public static final String CTRL = BASE_PATH + "/employees";
 	}
+	public static final class JobAdvertisementCtrl{
+		public static final String CTRL = BASE_PATH + "/jobAdvertisements";
+	}
+	public static final class CityCtrl{
+		public static final String CTRL = BASE_PATH + "/cities";
+	}
+	
+	
 }
