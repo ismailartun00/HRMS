@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities;
+package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,28 +8,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import kodlamaio.hrms.entities.abstracts.VerificationCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="verification_codes_employers")
-@PrimaryKeyJoinColumn(name="id")
-@EqualsAndHashCode(callSuper = true)
+@Table(name = "verification_codes_employers")
+@PrimaryKeyJoinColumn(name = "id")
+@EqualsAndHashCode(callSuper = false)
 public class VerificationCodeEmployer extends VerificationCode {
 
 	private static final long serialVersionUID = 1L;
 	
-	/*@Id
-	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name="id")
-	private VerificationCode verificationCode;*/
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name="employer_id", insertable=false, updatable=false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "employer_id")
 	private Employer employer;
 }

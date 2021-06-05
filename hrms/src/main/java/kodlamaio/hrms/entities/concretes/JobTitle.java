@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities;
+package kodlamaio.hrms.entities.concretes;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,22 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="job_titles")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
-public class JobTitle implements Serializable  {
+@Table(name = "job_titles")
+public class JobTitle implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -35,6 +32,6 @@ public class JobTitle implements Serializable  {
 	@Column(name = "title")
 	private String title;
 	
-	@OneToMany(mappedBy="jobTitle", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "jobTitle", fetch = FetchType.LAZY)
 	private List<JobAdvertisement> jobAdvertisements;
 }

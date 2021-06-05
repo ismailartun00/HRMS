@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities;
+package kodlamaio.hrms.entities.concretes;
 
 import java.io.Serializable;
 
@@ -17,23 +17,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="employer_phones")
-public class EmployerPhone implements Serializable  {
+@Table(name = "employer_phones")
+public class EmployerPhone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name="employer_id", insertable=false, updatable=false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "employer_id", referencedColumnName = "id")
 	private Employer employer;
 	
 	@Column(name = "phone_number")
 	private String phoneNumber;
+
 }

@@ -3,7 +3,7 @@ package kodlamaio.hrms.core.adapters.concretes;
 import org.springframework.stereotype.Component;
 
 import kodlamaio.hrms.core.adapters.abstracts.MernisValidationService;
-import kodlamaio.hrms.entities.Candidate;
+import kodlamaio.hrms.entities.concretes.Candidate;
 
 @Component
 public class FakeMernisValidationAdapter implements MernisValidationService {

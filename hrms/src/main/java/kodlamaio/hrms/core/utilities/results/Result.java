@@ -1,5 +1,10 @@
 package kodlamaio.hrms.core.utilities.results;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class Result {
 	private boolean success;
 	private String message;
@@ -11,13 +16,5 @@ public class Result {
 	public Result(boolean success,String message) {
 		this(success);
 		this.message = message;
-	}
-	
-	public String getMessage() {
-		return this.message;
-	}
-	
-	public boolean isSuccess() {
-		return this.success;
 	}
 }

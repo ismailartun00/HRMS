@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import org.springframework.stereotype.Component;
 
 import kodlamaio.hrms.core.adapters.abstracts.MernisValidationService;
-import kodlamaio.hrms.entities.Candidate;
+import kodlamaio.hrms.entities.concretes.Candidate;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 @Component
@@ -17,7 +17,7 @@ public class MernisValidationAdapter implements MernisValidationService{
         boolean result=false;
         try {
             result=client.TCKimlikNoDogrula(
-                        Long.valueOf(candidate.getIdentificationNumber()), 
+                        Long.parseLong(candidate.getIdentificationNumber()), 
                         candidate.getFirstName().toUpperCase(), 
                         candidate.getLastName().toUpperCase(), 
                         candidate.getBirthOfDate().getYear());
