@@ -44,6 +44,7 @@ public class Candidate extends User {
 	
 	@OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
 	private List<Resume> resumes;
+<<<<<<< HEAD
 	
 	public Candidate(String emailAddress, String password, String firstName, String lastName, String identificationNumber, LocalDate birthOfDate) {
 		super(emailAddress, password);
@@ -52,4 +53,6 @@ public class Candidate extends User {
 		this.identificationNumber = identificationNumber;
 		this.birthOfDate = birthOfDate;
 	}
+=======
+>>>>>>> 55ddad10cf405556a31feeb6b053395040681794
 }
