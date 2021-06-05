@@ -1,7 +1,6 @@
-package kodlamaio.hrms.entities;
+package kodlamaio.hrms.entities.abstracts;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,11 +13,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import kodlamaio.hrms.entities.concretes.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="employee_confirms")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employeeConfirmsEmployer"})
-public class EmployeeConfirm implements Serializable  {
+public abstract class EmployeeConfirm implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,13 +35,15 @@ public class EmployeeConfirm implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name="employee_id", insertable=false, updatable=false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "employee_id", referencedColumnName = "id")
 	private Employee employee;
 	
+	@NotNull
 	@Column(name = "is_confirmed")
 	private boolean isConfirmed;
 	
-	/*@OneToMany(mappedBy="employeeConfirms", fetch = FetchType.LAZY)
-	private List<EmployeeConfirmEmployer> employeeConfirmsEmployers;*/
+	public EmployeeConfirm(boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
+	}
 }

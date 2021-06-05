@@ -1,21 +1,17 @@
-package kodlamaio.hrms.entities;
-
+package kodlamaio.hrms.entities.abstracts;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="users")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidate, employee, employer"})
-public class User implements Serializable{
+public abstract class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,20 +32,21 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Email
+	@NotNull
+	@NotBlank
 	@Column(name="email_address", nullable = false, unique = true)
 	private String emailAddress;
 	
+	@NotNull
+	@NotBlank
 	@Column(name="password", nullable = false, length = 50)
 	private String password;
 	
-	/*@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-	private List<Candidate> candidates;
-	
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-	private List<Employee> employees;
-	
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-	private List<Employer> employers;*/
+	public User(String emailAddress, String password){
+		this.emailAddress = emailAddress;
+		this.password = password;
+	}
 
 
 }

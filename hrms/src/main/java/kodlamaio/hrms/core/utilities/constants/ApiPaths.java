@@ -27,6 +27,9 @@ public class ApiPaths {
 	public static final class CityCtrl{
 		public static final String CTRL = BASE_PATH + "/cities";
 	}
+	public static final class ResumeCtrl{
+		public static final String CTRL = BASE_PATH + "/resumes";
+	}
 	
 	
 }

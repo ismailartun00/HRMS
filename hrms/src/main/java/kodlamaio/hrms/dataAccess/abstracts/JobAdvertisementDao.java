@@ -3,14 +3,14 @@ package kodlamaio.hrms.dataAccess.abstracts;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import kodlamaio.hrms.entities.JobAdvertisement;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
-public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {	
-	List<JobAdvertisement> findByIsActiveTrueOrderByPublishDate();
-	List<JobAdvertisement> findByIsActiveTrueAndEmployer_CompanyName(String companyName);
+public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
+	List<JobAdvertisement> getByIsActiveTrue();
+	List<JobAdvertisement> getByIsActiveTrueOrderByPublishDate();
+	List<JobAdvertisement> getByIsActiveTrueAndEmployer_CompanyName(String companyName);
 	
-	@Query("From JobAdvertisement where isActive=true")
-	List<JobAdvertisement> getIsActive();
+	/*@Query("From JobAdvertisement where isActive=true")
+	List<JobAdvertisement> getByIsActive();*/
 }
