@@ -2,17 +2,18 @@ package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
 
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Employee;
+import kodlamaio.hrms.entities.dtos.EmployeeCreateDTO;
+import kodlamaio.hrms.entities.dtos.EmployeeUpdateDTO;
+import kodlamaio.hrms.entities.dtos.EmployeeViewDTO;
 
 public interface EmployeeService {
 	
-	DataResult<List<Employee>> getAll();
+	List<EmployeeViewDTO> getAll();
 	
-	Result add(Employee employee);
-	Result update(int id, Employee employee);
-	Result delete(int id);
+	EmployeeViewDTO add(EmployeeCreateDTO employeeCreateDto);
+	EmployeeViewDTO update(int id, EmployeeUpdateDTO employeeUpdateDto);
+	void delete(int id);
 	
 	Result getByEmailAddress(String emailAddress);
 }

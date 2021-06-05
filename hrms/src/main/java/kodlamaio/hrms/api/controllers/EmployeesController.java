@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.EmployeeService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.entities.concretes.Employee;
+import kodlamaio.hrms.entities.dtos.EmployeeCreateDTO;
+import kodlamaio.hrms.entities.dtos.EmployeeUpdateDTO;
+import kodlamaio.hrms.entities.dtos.EmployeeViewDTO;
 import kodlamaio.hrms.core.utilities.constants.ApiPaths;
 import lombok.RequiredArgsConstructor;
 
@@ -34,27 +37,30 @@ public class EmployeesController {
 	
 	@GetMapping("/getall")
 	@ApiOperation(value = "Employee Get All Operation", response = Employee.class)
-	public DataResult<List<Employee>> getAll(){
-		return this.employeeService.getAll();
+	public ResponseEntity<?> getAll(){
+		final List<EmployeeViewDTO> employees = employeeService.getAll();
+		return ResponseEntity.ok(employees);
 	}
 	
 	@PostMapping("/")
 	@ApiOperation(value = "Employee Add Operation", response = Employee.class)
-	public Result add(@RequestBody Employee employee) {
-		
-		return this.employeeService.add(employee);
+	public ResponseEntity<?> add(@Valid @RequestBody EmployeeCreateDTO employeeCreateDto) {
+		employeeService.add(employeeCreateDto);
+		return ResponseEntity.ok(new SuccessResult("Employee Created"));
 	}
 	
 	@PutMapping("/{id}")
 	@ApiOperation(value = "Employee Update Operation", response = Employee.class)
-	public Result update (@PathVariable(value = "id", required = true) int id, @Valid @RequestBody Employee employee){
-		return this.employeeService.update(id, employee);
+	public ResponseEntity<?> update (@PathVariable(value = "id", required = true) int id, @RequestBody EmployeeUpdateDTO employeeUpdateDto){
+		final EmployeeViewDTO employeeViewDto = employeeService.update(id, employeeUpdateDto);
+		return ResponseEntity.ok(employeeViewDto);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ApiOperation(value = "Employee Delete Operation", response = Employee.class)
-	public Result delete(@PathVariable(value = "id", required = true) int id){
-		return this.employeeService.delete(id);
+	public ResponseEntity<?> delete(@PathVariable(value = "id", required = true) int id){
+		employeeService.delete(id);
+		return ResponseEntity.ok(new SuccessResult("Employee Deleted"));
 	}
 	
 }

@@ -1,10 +1,12 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.core.exceptions.NotFoundException;
 import kodlamaio.hrms.core.utilities.constants.EnglishMessages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -13,6 +15,9 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.dtos.EmployerCreateDTO;
+import kodlamaio.hrms.entities.dtos.EmployerUpdateDTO;
+import kodlamaio.hrms.entities.dtos.EmployerViewDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -22,40 +27,34 @@ public class EmployerManager implements EmployerService {
 	private final EmployerDao employerDao;
 
 	@Override
-	public DataResult<List<Employer>> getAll() {
+	public List<EmployerViewDTO> getAll() {
 
-		return new SuccessDataResult<List<Employer>> (this.employerDao.findAll(), EnglishMessages.EMPLOYER_SUCCESS_DATA_LISTED);
+		return employerDao.findAll().stream().map(EmployerViewDTO::of).collect(Collectors.toList());
 	}
 
 	@Override
-	public Result add(Employer employer) {
-		if(employerDao.getByEmailAddress(employer.getEmailAddress()) != null || employerDao.getByCompanyName(employer.getCompanyName()) != null
-				|| employerDao.getByWebAddress(employer.getWebAddress()) != null) {
-			return new ErrorResult(employer.getCompanyName() + " could not be added." + employer.getCompanyName() + "'s informations has already been defined.");
-		}
-		if(employer.getPassword().isEmpty()) {
-			return new ErrorResult(employer.getCompanyName() + "'s password can't be empty.");
-		}
-		this.employerDao.save(employer);
-		return new SuccessResult(employer.getCompanyName() + " added successfully");
+	public EmployerViewDTO add(EmployerCreateDTO employerCreateDto) {
+		final Employer employer = employerDao.save(new Employer(employerCreateDto.getEmailAddress(),
+				employerCreateDto.getPassword(), employerCreateDto.getCompanyName(), employerCreateDto.getPassword()));
+		
+		return EmployerViewDTO.of(employer);
 	}
 
 	@Override
-	public Result update(int id, Employer employer) {
-		if(employerDao.getOne(id) == null) {
-			return new ErrorResult(employer.getCompanyName() + " doesn't exist");
-		}
-		employerDao.save(employer);
-		return new SuccessResult(employer.getCompanyName() + " updated");
+	public EmployerViewDTO update(int id, EmployerUpdateDTO employerUpdateDto) {
+		final Employer employer = employerDao.findById(id).orElseThrow(() -> new NotFoundException("Not Found Exception"));
+		
+		employer.setCompanyName(employerUpdateDto.getCompanyName());
+		employer.setWebAddress(employerUpdateDto.getWebAddress());
+		
+		final Employer updatedEmployer = employerDao.save(employer);
+		return EmployerViewDTO.of(updatedEmployer);
 	}
 
 	@Override
-	public Result delete(int id) {
-		if(employerDao.getOne(id) == null) {
-			return new ErrorResult(id+ " was not found");
-		}
-		employerDao.deleteById(id);
-		return new SuccessResult(id + " deleted");
+	public void delete(int id) {
+		final Employer employer = employerDao.findById(id).orElseThrow(() -> new NotFoundException("Not Found Exception"));
+		employerDao.deleteById(employer.getId());
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +19,12 @@ import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.constants.ApiPaths;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.dtos.CandidateCreateDTO;
+import kodlamaio.hrms.entities.dtos.CandidateUpdateDTO;
+import kodlamaio.hrms.entities.dtos.CandidateViewDTO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -32,27 +37,31 @@ public class CandidatesController {
 	
 	@GetMapping("/getall")
 	@ApiOperation(value = "Candidate Get All Operation", response = Candidate.class)
-	public DataResult<List<Candidate>> getAll(){
-		return this.candidateService.getAll();
+	public ResponseEntity<?> getAll(){
+		final List<CandidateViewDTO> candidates = candidateService.getAll();
+		return ResponseEntity.ok(candidates);
 	}
 	
 	@PostMapping("/")
 	@ApiOperation(value = "Candidate Add Operation", response = Candidate.class)
-	public Result add( @RequestBody Candidate candidate) {
-		return this.candidateService.add(candidate);
+	public ResponseEntity<?> add( @RequestBody CandidateCreateDTO candidateCreateDto) {
+		candidateService.add(candidateCreateDto);
+		return ResponseEntity.ok(new SuccessResult("Candidate Created"));
 	}
 
 	
 	@PutMapping("/{id}")
 	@ApiOperation(value = "Candidate Update Operation", response = Candidate.class)
-	public Result update (@PathVariable(value = "id", required = true) int id, @Valid @RequestBody Candidate candidate){
-		return this.candidateService.update(id, candidate);
+	public ResponseEntity<?> update (@PathVariable(value = "id", required = true) int id, @RequestBody CandidateUpdateDTO candidateUpdateDto){
+		final CandidateViewDTO candidateViewDto = candidateService.update(id, candidateUpdateDto);
+		return ResponseEntity.ok(candidateViewDto);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ApiOperation(value = "Candidate Delete Operation", response = Candidate.class)
-	public Result delete(@PathVariable(value = "id", required = true) int id){
-		return this.candidateService.delete(id);
+	public ResponseEntity<?> delete(@PathVariable(value = "id", required = true) int id){
+		candidateService.delete(id);
+		return ResponseEntity.ok(new SuccessResult("Candidate Deleted"));
 	}
 	
 }

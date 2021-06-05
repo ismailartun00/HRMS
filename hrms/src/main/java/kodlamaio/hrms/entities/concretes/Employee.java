@@ -35,4 +35,10 @@ public class Employee extends User {
 
 	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
 	private List<EmployeeConfirm> employeeConfirms;
+	
+	public Employee(String emailAddress, String password, String firstName, String lastName) {
+		super(emailAddress, password);
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 }
