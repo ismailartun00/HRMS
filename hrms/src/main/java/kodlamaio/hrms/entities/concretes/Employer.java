@@ -43,13 +43,10 @@ public class Employer extends User{
 	
 	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
 	private List<EmployeeConfirmEmployer> employeeConfirmEmployers;
-<<<<<<< HEAD
 	
 	public Employer(String emailAddress, String password, String companyName, String webAddress) {
 		super(emailAddress, password);
 		this.companyName = companyName;
 		this.webAddress = webAddress;
 	}
-=======
->>>>>>> 55ddad10cf405556a31feeb6b053395040681794
 }
