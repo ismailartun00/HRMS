@@ -2,19 +2,14 @@ package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
 
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.dtos.CandidateCreateDTO;
-import kodlamaio.hrms.entities.dtos.CandidateUpdateDTO;
-import kodlamaio.hrms.entities.dtos.CandidateViewDTO;
+import kodlamaio.hrms.entities.concretes.Candidate;
 
 public interface CandidateService {
 
-	List<CandidateViewDTO> getAll();
-	
-	CandidateViewDTO add(CandidateCreateDTO candidateCreateDto);
-	CandidateViewDTO update(int id, CandidateUpdateDTO candidateUpdateDto);
-	void delete(int id);
-	
-	Result getByEmailAddress(String emailAddress);
-	Result getByIdentificationNumber(String identificationNumber);
+	DataResult<List<Candidate>> getAll();
+
+	Result add(Candidate candidate);
+
 }

@@ -1,52 +1,41 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-import kodlamaio.hrms.entities.abstracts.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "employers")
-@PrimaryKeyJoinColumn(name = "id")
-@EqualsAndHashCode(callSuper = false)
-public class Employer extends User{
-	
-	private static final long serialVersionUID = 1L;
+@Data
+@Entity
+@Table(name = "employer_users")
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Employer extends User {
 
+	@NotBlank(message = "Şirket İsmi Alanı Boş Olamaz")
 	@Column(name = "company_name")
 	private String companyName;
-	
+
+	@NotBlank(message = "Web Sitesi Alanı Boş Olamaz")
 	@Column(name = "web_address")
 	private String webAddress;
-	
-	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
-	private List<VerificationCodeEmployer> verificationCodeEmployers;
-	
-	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
-	private List<JobAdvertisement> jobAdvertisements;
-	
-	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
-	private List<EmployerPhone> employerPhones;
-	
-	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
-	private List<EmployeeConfirmEmployer> employeeConfirmEmployers;
-	
-	public Employer(String emailAddress, String password, String companyName, String webAddress) {
-		super(emailAddress, password);
-		this.companyName = companyName;
-		this.webAddress = webAddress;
-	}
+
+	@NotBlank(message = "Telefon Numarası Alanı Boş Olamaz")
+	@Column(name = "phone_number")
+	private String phoneNumber;
+
+	@JsonIgnore
+	@Column(name = "user_confirm")
+	private boolean userConfirm;
+
 }

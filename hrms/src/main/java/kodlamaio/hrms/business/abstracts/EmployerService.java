@@ -2,22 +2,14 @@ package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
 
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-
-import kodlamaio.hrms.entities.dtos.EmployerCreateDTO;
-import kodlamaio.hrms.entities.dtos.EmployerUpdateDTO;
-import kodlamaio.hrms.entities.dtos.EmployerViewDTO;
+import kodlamaio.hrms.entities.concretes.Employer;
 
 public interface EmployerService {
 
-	List<EmployerViewDTO> getAll();
-	
-	EmployerViewDTO add(EmployerCreateDTO employerCreateDto);
-	EmployerViewDTO update(int id, EmployerUpdateDTO employerUpdateDto);
-	void delete(int id);
-	
-	Result getByEmailAddress(String emailAddress);
-	Result getByCompanyName(String companyName);
-	Result getByWebAddress(String webAddress);
-	
+	DataResult<List<Employer>> getAll();
+
+	Result add(Employer employer);
+
 }

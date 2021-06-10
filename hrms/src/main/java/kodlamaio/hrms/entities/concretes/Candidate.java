@@ -1,55 +1,43 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-import kodlamaio.hrms.entities.abstracts.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "candidates")
-@PrimaryKeyJoinColumn(name = "id")
-@EqualsAndHashCode(callSuper = false)
+@Data
+@Entity
+@Table(name = "candidate_users")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Candidate extends User {
 
-	private static final long serialVersionUID = 1L;
+	@NotBlank(message = "İsim Alanı Boş olamaz")
+	@Size(min = 3, message = "İsim alanında en az 3 karakter kullanmanız gerekiyor")
+	@Column(name = "name")
+	private String name;
 
-	@Column(name = "first_name")
-	private String firstName;
-	
-	@Column(name = "last_name")
-	private String lastName;
-	
-	@Column(name = "identification_number")
-	private String identificationNumber;
-	
-	@Column(name = "birth_date")
-	private LocalDate birthOfDate;
+	@NotBlank(message = "Soyisim Alanı Boş olamaz")
+	@Column(name = "surname")
+	private String surname;
 
-	@OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
-	private List<VerificationCodeCandidate> verificationCodeCandidates;
-	
-	@OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
-	private List<Resume> resumes;
-	
-	public Candidate(String emailAddress, String password, String firstName, String lastName, String identificationNumber, LocalDate birthOfDate) {
-		super(emailAddress, password);
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.identificationNumber = identificationNumber;
-		this.birthOfDate = birthOfDate;
-	}
+	@NotBlank(message = "TC Kimlik Numarası Alanı Boş Olamaz")
+	@Size(min = 11, max = 11, message = "TCKimlik No 11 hane olmalıdır")
+	@Column(name = "national_identity")
+	private String nationalIdentity;
+
+	@NotBlank(message = "Doğum Yılı Alanı Boş Olamaz")
+	@Column(name = "birth_year")
+	private String birth_year;
+
 }
