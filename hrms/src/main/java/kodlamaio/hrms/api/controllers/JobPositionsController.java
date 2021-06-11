@@ -1,9 +1,8 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +14,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.constants.ApiPaths;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import lombok.RequiredArgsConstructor;
 
@@ -31,13 +28,13 @@ public class JobPositionsController {
 
 	@GetMapping("/getall")
 	@ApiOperation(value = "JobPosition Get All Operation", response = JobPosition.class)
-	public DataResult<List<JobPosition>> getAll() {
-		return this.jobPositionsService.getAll();
+	public ResponseEntity<?> getAll() {
+		return ResponseEntity.ok(this.jobPositionsService.getAll());
 	}
 
 	@PostMapping("/add")
 	@ApiOperation(value = "JobPosition Add Operation", response = JobPosition.class)
-	public Result add(@Valid @RequestBody JobPosition newJobPositions) {
-		return this.jobPositionsService.add(newJobPositions);
+	public ResponseEntity<?> add(@Valid @RequestBody JobPosition newJobPositions) {
+		return ResponseEntity.ok(this.jobPositionsService.add(newJobPositions));
 	}
 }

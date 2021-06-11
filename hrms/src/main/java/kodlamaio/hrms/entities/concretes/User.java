@@ -32,7 +32,7 @@ public class User {
 	@Email(message = "Lütfen Geçerli Bir Mail Adresi Giriniz")
 	@NotBlank(message = "Mail Alanı Boş olamaz")
 	@Column(name = "mail")
-	private String mail;
+	private String emailAddress;
 
 	@NotBlank(message = "Şifre Alanı Boş olamaz")
 	@Size(min = 6, max = 16, message = "Şifre en az 6, en fazla 16 karakterden oluşabilir")

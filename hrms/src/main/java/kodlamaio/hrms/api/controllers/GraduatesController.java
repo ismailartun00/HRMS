@@ -1,9 +1,8 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +13,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kodlamaio.hrms.business.abstracts.GraduateService;
 import kodlamaio.hrms.core.utilities.constants.ApiPaths;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Graduate;
 import lombok.RequiredArgsConstructor;
 
@@ -29,13 +26,13 @@ public class GraduatesController {
 
 	@GetMapping("/getall")
 	@ApiOperation(value = "Graduate Get All Operation", response = Graduate.class)
-	public DataResult<List<Graduate>> getAll() {
-		return this.graduateService.getAll();
+	public ResponseEntity<?> getAll() {
+		return ResponseEntity.ok(this.graduateService.getAll());
 	}
 
 	@PostMapping("/add")
 	@ApiOperation(value = "Graduate Add Operation", response = Graduate.class)
-	public Result add(@Valid @RequestBody Graduate graduate) {
-		return this.graduateService.add(graduate);
+	public ResponseEntity<?> add(@Valid @RequestBody Graduate graduate) {
+		return ResponseEntity.ok(this.graduateService.add(graduate));
 	}
 }

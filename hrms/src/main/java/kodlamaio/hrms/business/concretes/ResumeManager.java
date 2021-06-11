@@ -15,8 +15,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Resume;
-import kodlamaio.hrms.entities.dtos.ResumeAddDto;
-import kodlamaio.hrms.entities.dtos.ResumeGetDto;
+import kodlamaio.hrms.entities.dtos.ResumeCreateDto;
+import kodlamaio.hrms.entities.dtos.ResumeViewDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,7 +28,7 @@ public class ResumeManager implements ResumeService {
 	private final DtoConverterService dtoConverterService;
 
 	@Override
-	public Result add(ResumeAddDto resumeDto) {
+	public Result add(ResumeCreateDto resumeDto) {
 //		if (resume.getLanguages() != null) {
 //			resume.getLanguages().forEach(lang -> lang.setResume(resume));
 //		}
@@ -47,9 +47,9 @@ public class ResumeManager implements ResumeService {
 	}
 
 	@Override
-	public DataResult<List<ResumeGetDto>> getAll() {
-		return new SuccessDataResult<List<ResumeGetDto>>(
-				dtoConverterService.dtoConverter(resumeDao.findAll(), ResumeGetDto.class), "Data Listelendi");
+	public DataResult<List<ResumeViewDto>> getAll() {
+		return new SuccessDataResult<List<ResumeViewDto>>(
+				dtoConverterService.dtoConverter(resumeDao.findAll(), ResumeViewDto.class), "Data Listelendi");
 	}
 
 	@Override
@@ -65,9 +65,9 @@ public class ResumeManager implements ResumeService {
 	}
 
 	@Override
-	public DataResult<List<ResumeGetDto>> findAllByCandidateId(int id) {
-		return new SuccessDataResult<List<ResumeGetDto>>(
-				dtoConverterService.dtoConverter(resumeDao.findAllByCandidateId(id), ResumeGetDto.class),
+	public DataResult<List<ResumeViewDto>> findAllByCandidateId(int id) {
+		return new SuccessDataResult<List<ResumeViewDto>>(
+				dtoConverterService.dtoConverter(resumeDao.findAllByCandidateId(id), ResumeViewDto.class),
 				"Data Listelendi");
 	}
 }

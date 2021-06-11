@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CandidateFieldManager implements FieldService<Candidate> {
 
-	private final CandidateDao candidatesDao;
+	private final CandidateDao candidateDao;
 	private final UserDao userDao;
 	private final VerifyApiService<Candidate> verifyApiService;
 	private final VerifyCodeService verifyCodeService;
@@ -32,23 +32,23 @@ public class CandidateFieldManager implements FieldService<Candidate> {
 		if (!this.verifyApiService.ApiControl(candidate)) {
 			return new ErrorResult("Mernis Kimlik Doğrulaması Başarısız Oldu");
 		}
-		if (this.userDao.existsByMail(candidate.getMail())) {
+		if (this.userDao.existsByMail(candidate.getEmailAddress())) {
 			return new ErrorResult("Mail Adresi Daha Önce Kullanıldı");
 		}
-		if (candidatesDao.existsByNationalIdentity(candidate.getNationalIdentity())) {
+		if (candidateDao.existsByNationalIdentity(candidate.getNationalIdentity())) {
 			return new ErrorResult("TC Kimlik Numarası Daha Önce Kullanıldı");
 		}
 		if (!candidate.getPassword().equals(candidate.getPasswordRepeat())) {
 			return new ErrorResult("Şifreler Uyuşmuyor");
 		}
-		this.candidatesDao.save(candidate);
+		this.candidateDao.save(candidate);
 		this.verifyCodeService.createVerifyCode(userDao.getOne(candidate.getId()));
-		this.verifyCodeService.sendMail(candidate.getMail());
+		this.verifyCodeService.sendMail(candidate.getEmailAddress());
 		return new SuccessResult("Kayıt Başarılı");
 	}
 
 	@Override
 	public DataResult<List<Candidate>> getAll() {
-		return new SuccessDataResult<List<Candidate>>(this.candidatesDao.findAll(), "Listeleme Başarılı");
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(), "Listeleme Başarılı");
 	}
 }

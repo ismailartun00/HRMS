@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobPostingDto {
+public class JobPostingViewDto {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	private int id;

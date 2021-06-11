@@ -16,9 +16,10 @@ public class MernisAdapter implements VerifyApiService<Candidate> {
 		KPSPublicSoapProxy kpsPublic;
 		try {
 			kpsPublic = new KPSPublicSoapProxy();
+			@SuppressWarnings("deprecation")
 			boolean durum = kpsPublic.TCKimlikNoDogrula(Long.parseLong(candidate.getNationalIdentity()),
 					candidate.getName().toUpperCase(), candidate.getSurname().toUpperCase(),
-					Integer.parseInt(candidate.getBirth_year()));
+					candidate.getBirthOfDate().getYear());
 			return durum;
 		} catch (RemoteException | NumberFormatException e1) {
 			e1.printStackTrace();

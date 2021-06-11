@@ -21,8 +21,8 @@ public class CandidateManager implements CandidateService {
 	}
 
 	@Override
-	public Result add(Candidate newCandidate) {
-		return this.controllerService.verifyData(newCandidate);
+	public Result add(Candidate candidate) {
+		return this.controllerService.verifyData(candidate);
 	}
 
 }

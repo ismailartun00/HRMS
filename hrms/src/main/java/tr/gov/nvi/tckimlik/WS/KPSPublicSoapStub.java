@@ -8,10 +8,14 @@
 package tr.gov.nvi.tckimlik.WS;
 
 public class KPSPublicSoapStub extends org.apache.axis.client.Stub implements tr.gov.nvi.tckimlik.WS.KPSPublicSoap {
-    private java.util.Vector cachedSerClasses = new java.util.Vector();
-    private java.util.Vector cachedSerQNames = new java.util.Vector();
-    private java.util.Vector cachedSerFactories = new java.util.Vector();
-    private java.util.Vector cachedDeserFactories = new java.util.Vector();
+    @SuppressWarnings({ "rawtypes", "unused" })
+	private java.util.Vector cachedSerClasses = new java.util.Vector();
+    @SuppressWarnings({ "rawtypes", "unused" })
+	private java.util.Vector cachedSerQNames = new java.util.Vector();
+    @SuppressWarnings({ "rawtypes", "unused" })
+	private java.util.Vector cachedSerFactories = new java.util.Vector();
+    @SuppressWarnings({ "rawtypes", "unused" })
+	private java.util.Vector cachedDeserFactories = new java.util.Vector();
 
     static org.apache.axis.description.OperationDesc [] _operations;
 
@@ -62,7 +66,8 @@ public class KPSPublicSoapStub extends org.apache.axis.client.Stub implements tr
         ((org.apache.axis.client.Service)super.service).setTypeMappingVersion("1.2");
     }
 
-    protected org.apache.axis.client.Call createCall() throws java.rmi.RemoteException {
+    @SuppressWarnings("rawtypes")
+	protected org.apache.axis.client.Call createCall() throws java.rmi.RemoteException {
         try {
             org.apache.axis.client.Call _call = super._createCall();
             if (super.maintainSessionSet) {
@@ -95,7 +100,8 @@ public class KPSPublicSoapStub extends org.apache.axis.client.Stub implements tr
         }
     }
 
-    public boolean TCKimlikNoDogrula(long TCKimlikNo, java.lang.String ad, java.lang.String soyad, int dogumYili) throws java.rmi.RemoteException {
+    @SuppressWarnings("removal")
+	public boolean TCKimlikNoDogrula(long TCKimlikNo, java.lang.String ad, java.lang.String soyad, int dogumYili) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }

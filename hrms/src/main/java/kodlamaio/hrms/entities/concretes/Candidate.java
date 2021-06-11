@@ -1,5 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -38,6 +40,6 @@ public class Candidate extends User {
 
 	@NotBlank(message = "Doğum Yılı Alanı Boş Olamaz")
 	@Column(name = "birth_year")
-	private String birth_year;
+	private Date birthOfDate;
 
 }
