@@ -20,6 +20,10 @@ import kodlamaio.hrms.entities.concretes.Resume;
 import kodlamaio.hrms.entities.dtos.ResumeCreateDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @Api(value = "Resume APIs")

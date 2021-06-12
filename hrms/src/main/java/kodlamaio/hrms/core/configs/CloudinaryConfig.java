@@ -9,6 +9,10 @@ import com.cloudinary.utils.ObjectUtils;
 import kodlamaio.hrms.core.adapters.cloudinary.abstracts.CloudinaryService;
 import kodlamaio.hrms.core.adapters.cloudinary.concretes.CloudinaryManager;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Configuration
 public class CloudinaryConfig {
 	@Bean

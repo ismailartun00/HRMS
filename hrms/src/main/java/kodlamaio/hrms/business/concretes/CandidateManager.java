@@ -9,6 +9,10 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class CandidateManager implements CandidateService {

@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import kodlamaio.hrms.entities.concretes.Education;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Repository
 public interface EducationDao extends JpaRepository<Education, Integer> {
 

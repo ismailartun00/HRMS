@@ -12,6 +12,10 @@ import kodlamaio.hrms.dataAccess.GraduateDao;
 import kodlamaio.hrms.entities.concretes.Graduate;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class GraduateManager implements GraduateService {

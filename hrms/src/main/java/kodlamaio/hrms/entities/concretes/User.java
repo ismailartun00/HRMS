@@ -19,6 +19,10 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Data;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Data
 @Entity
 @Table(name = "users")

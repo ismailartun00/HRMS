@@ -9,6 +9,10 @@ import kodlamaio.hrms.entities.dtos.JobPostingCreateDto;
 import kodlamaio.hrms.entities.dtos.JobPostingUpdateDto;
 import kodlamaio.hrms.entities.dtos.JobPostingViewDto;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 public interface JobPostingService {
 
 	Result add(JobPostingCreateDto jobPostingAddDto);

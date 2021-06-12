@@ -21,6 +21,10 @@ import kodlamaio.hrms.entities.dtos.JobPostingCreateDto;
 import kodlamaio.hrms.entities.dtos.JobPostingUpdateDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor

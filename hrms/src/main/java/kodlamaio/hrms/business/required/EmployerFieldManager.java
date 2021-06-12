@@ -16,6 +16,10 @@ import kodlamaio.hrms.dataAccess.UserDao;
 import kodlamaio.hrms.entities.concretes.Employer;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class EmployerFieldManager implements FieldService<Employer> {

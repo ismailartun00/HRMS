@@ -17,6 +17,10 @@ import kodlamaio.hrms.entities.dtos.JobPostingUpdateDto;
 import kodlamaio.hrms.entities.dtos.JobPostingViewDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class JobPostingManager implements JobPostingService {

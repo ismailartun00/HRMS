@@ -6,6 +6,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @ControllerAdvice
 public class ValidationExceptionHandler {
 

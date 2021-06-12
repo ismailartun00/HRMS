@@ -14,6 +14,10 @@ import kodlamaio.hrms.entities.concretes.User;
 import kodlamaio.hrms.entities.concretes.VerifyCode;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class VerifyCodeManager implements VerifyCodeService {

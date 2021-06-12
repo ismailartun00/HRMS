@@ -14,6 +14,10 @@ import kodlamaio.hrms.dataAccess.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class JobTitleFieldManager implements FieldService<JobPosition> {

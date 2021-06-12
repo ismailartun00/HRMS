@@ -1,5 +1,9 @@
 package kodlamaio.hrms.core.utilities.constants;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 public class EnglishMessages {
 	// User
 	public static String USER_SUCCESS_DATA_LISTED = "Users listed";

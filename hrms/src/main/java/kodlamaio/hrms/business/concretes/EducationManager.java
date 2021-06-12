@@ -13,6 +13,10 @@ import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.dtos.EducationDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class EducationManager implements EducationService {

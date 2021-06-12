@@ -15,6 +15,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

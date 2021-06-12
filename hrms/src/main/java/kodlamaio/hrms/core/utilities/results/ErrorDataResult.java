@@ -1,5 +1,9 @@
 package kodlamaio.hrms.core.utilities.results;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 public class ErrorDataResult<T> extends DataResult<T> {
 
 	public ErrorDataResult(T data, String message) {

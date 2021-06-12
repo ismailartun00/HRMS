@@ -8,6 +8,10 @@ import kodlamaio.hrms.core.adapters.mernis.concretes.VerifyApiService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 public class MernisAdapter implements VerifyApiService<Candidate> {
 

@@ -17,6 +17,10 @@ import kodlamaio.hrms.dataAccess.UserDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class CandidateFieldManager implements FieldService<Candidate> {

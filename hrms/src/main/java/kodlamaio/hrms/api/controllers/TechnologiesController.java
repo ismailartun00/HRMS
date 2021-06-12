@@ -17,6 +17,10 @@ import kodlamaio.hrms.entities.concretes.Technology;
 import kodlamaio.hrms.entities.dtos.TechnologyDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @Api(value = "Technology APIs")

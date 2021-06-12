@@ -2,6 +2,10 @@ package kodlamaio.hrms.core.utilities.results;
 
 import lombok.Getter;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Getter
 public class DataResult<T> extends Result {
 

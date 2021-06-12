@@ -1,5 +1,9 @@
 package kodlamaio.hrms.core.utilities.constants;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 public class ApiPaths {
 
 	private static final String BASE_PATH = "/api";

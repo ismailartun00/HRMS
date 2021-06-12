@@ -9,6 +9,10 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.ResumeCreateDto;
 import kodlamaio.hrms.entities.dtos.ResumeViewDto;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 public interface ResumeService {
 
 	Result add(ResumeCreateDto resumeDto);

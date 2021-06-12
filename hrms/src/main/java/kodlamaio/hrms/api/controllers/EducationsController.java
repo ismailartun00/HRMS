@@ -17,6 +17,10 @@ import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.dtos.EducationDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @Api(value = "Education APIs")

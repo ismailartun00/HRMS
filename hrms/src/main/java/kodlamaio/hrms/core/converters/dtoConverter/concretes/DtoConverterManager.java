@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.core.converters.dtoConverter.abstracts.DtoConverterService;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 public class DtoConverterManager implements DtoConverterService {
 

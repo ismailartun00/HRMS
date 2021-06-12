@@ -3,6 +3,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Repository
 public interface CandidateDao extends JpaRepository<Candidate, Integer>{
 		

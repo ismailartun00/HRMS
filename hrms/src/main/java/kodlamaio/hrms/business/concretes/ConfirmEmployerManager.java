@@ -15,6 +15,10 @@ import kodlamaio.hrms.entities.concretes.ConfirmEmployer;
 import kodlamaio.hrms.entities.concretes.Employer;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class ConfirmEmployerManager implements ConfirmEmployerService {

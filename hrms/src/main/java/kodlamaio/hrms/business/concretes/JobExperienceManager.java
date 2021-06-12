@@ -15,6 +15,10 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.dtos.JobExperienceDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class JobExperienceManager implements JobExperienceService {

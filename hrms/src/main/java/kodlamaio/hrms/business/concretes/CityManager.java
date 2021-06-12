@@ -9,6 +9,10 @@ import kodlamaio.hrms.dataAccess.CityDao;
 import kodlamaio.hrms.entities.concretes.City;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class CityManager implements CityService {

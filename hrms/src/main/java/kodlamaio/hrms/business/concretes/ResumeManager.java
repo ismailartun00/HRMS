@@ -19,6 +19,10 @@ import kodlamaio.hrms.entities.dtos.ResumeCreateDto;
 import kodlamaio.hrms.entities.dtos.ResumeViewDto;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class ResumeManager implements ResumeService {

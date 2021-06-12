@@ -17,6 +17,10 @@ import kodlamaio.hrms.core.utilities.constants.ApiPaths;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author İSMAİL ARTUN
+ * @since 1.0
+ */
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
